@@ -1,6 +1,6 @@
 Package.describe({
   name: 'nathantreid:static-assets',
-  version: '0.0.1',
+  version: '0.0.2',
   summary: 'Import any static assets you like!',
   documentation: 'README.md',
   git: 'https://github.com/nathantreid/meteor-static-assets.git',
