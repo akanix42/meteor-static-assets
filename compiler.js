@@ -30,11 +30,12 @@ export default class AssetsCompiler extends CachingCompiler {
   }
 
   addCompileResult(inputFile, compileResult) {
-    const hostingPath = `${packageOptions.pathPrefix}${inputFile.getPathInPackage()}`;
+    const packageRelativeHostingPath = `${packageOptions.pathPrefix}${inputFile.getPathInPackage()}`;
+    const appRelativeHostingPath = inputFile.getPackageName() ? `packages/${inputFile.getPackageName().replace(':', '_')}/${packageRelativeHostingPath}` : packageRelativeHostingPath;
     let exportCode;
     exportCode = packageOptions.exportAbsolutePaths
-      ? `module.exports = require('meteor/meteor').Meteor.absoluteUrl('${hostingPath}');`
-      : `module.exports = '${hostingPath}';`;
+      ? `module.exports = require('meteor/meteor').Meteor.absoluteUrl('${appRelativeHostingPath}');`
+      : `module.exports = '${appRelativeHostingPath}';`;
 
     inputFile.addJavaScript({
       path: inputFile.getPathInPackage() + '.js',
@@ -44,7 +45,7 @@ export default class AssetsCompiler extends CachingCompiler {
 
     inputFile.addAsset({
       data: inputFile.getContentsAsBuffer(),
-      path: `${hostingPath}`,
+      path: `${packageRelativeHostingPath}`,
     });
   }
 }
