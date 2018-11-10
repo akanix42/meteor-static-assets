@@ -8,6 +8,7 @@ const optionsFilePath = path.join(meteorProjectPath || '', 'package.json');
 
 const defaultOptions = {
   extensions: [
+    'gif',
     'jpg',
     'png',
     'svg',
