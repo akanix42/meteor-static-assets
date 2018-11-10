@@ -1,6 +1,6 @@
 Package.describe({
   name: 'nathantreid:static-assets',
-  version: '0.0.3',
+  version: '0.1.0',
   summary: 'Import any static assets you like!',
   documentation: 'README.md',
   git: 'https://github.com/nathantreid/meteor-static-assets.git',
@@ -9,8 +9,8 @@ Package.describe({
 Package.registerBuildPlugin({
   name: 'static-assets',
   use: [
-    'caching-compiler@1.1.9',
-    'ecmascript@0.9.0',
+    'caching-compiler@1.2.0',
+    'ecmascript@0.12.0',
   ],
   sources: [
     'sha1.js',
