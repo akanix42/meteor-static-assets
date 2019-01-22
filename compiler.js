@@ -34,7 +34,7 @@ export default class AssetsCompiler extends CachingCompiler {
     const appRelativeHostingPath = inputFile.getPackageName() ? `packages/${inputFile.getPackageName().replace(':', '_')}/${packageRelativeHostingPath}` : packageRelativeHostingPath;
     let exportCode;
     exportCode = packageOptions.exportAbsolutePaths
-      ? `module.exports = require('meteor/meteor').Meteor.absoluteUrl('${appRelativeHostingPath}');`
+      ? `module.exports = require('meteor/meteor').Meteor.absoluteUrl('${appRelativeHostingPath}').replace(new RegExp('^.*//.*?/'), '/');`
       : `module.exports = '${appRelativeHostingPath}';`;
 
     inputFile.addJavaScript({
